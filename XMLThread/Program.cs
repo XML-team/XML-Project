@@ -4,20 +4,21 @@ using System.Collections.Generic;
 using System.Xml.Serialization;
 using System.IO;
 
+using System.IO;
+using System.Xml.Serialization;
+
+
 namespace XMLThread
 {
     class Program
     {
         static void Main(string[] args)
         {
-            
+            Student Reema = new Student("Reema","Imam Abdulrahman bin Faisal University", "Computer Science");
+            SerializeToXml(typeof(Student), Reema, @"C:\Users\Reema\Desktop\StudentInfo.xml");
         }
 
-        static async Task XMLWrite(List<Student> students)
-        {
-            
-        }
-        
+
         static async Task<List<Student>> XMLRead(Type type, string path)
         {
             List<Student> students = null;
@@ -30,9 +31,18 @@ namespace XMLThread
                 reader.Close();
             }
 
+            List<Student> students = null;
+
+            if (File.Exists(path))
+            {
+                XmlSerializer xmlSerializer = new XmlSerializer(type);
+                TextReader reader = new StreamReader(path);
+                students = xmlSerializer.Deserialize(reader) as List<Student>;
+                reader.Close();
+            }
+
             return null;
         }
-
         static async Task<List<Student>> GetStudentList()
         {
             List<Student> students = new List<Student>
@@ -48,10 +58,23 @@ namespace XMLThread
         
     }
 
-    class Student
+    public class Student
     {
-        public int Id { get; set; }
+
+        public Student()
+        {
+                
+        }
+
+        public Student(string name, string university, string major)
+        {
+            Name = name;
+            University = university;
+            Major = major;
+        }
+
         public string Name { get; set; }
-        public int Age { get; set; }
+        public string University{ get; set; }
+        public string Major { get; set; }
     }
 }
