@@ -25,17 +25,18 @@ namespace XMLThread
 
         static object DeserializeFromXml(Type type, string path)
             {
-            object o = null;
+            List<Student> students = null;
 
-                if (File.Exists(path))
-                   {
-                    XmlSerializer xmlSerializer = new XmlSerializer(type);
-                    TextReader reader = new StreamReader(path);
-                    o = xmlSerializer.Deserialize(reader);
-                    reader.Close();
-                     }
-            return o;
+            if (File.Exists(path))
+            {
+                XmlSerializer xmlSerializer = new XmlSerializer(type);
+                TextReader reader = new StreamReader(path);
+                students = xmlSerializer.Deserialize(reader) as List<Student>;
+                reader.Close();
             }
+
+            return null;
+        }
         static async Task<List<Student>> GetStudentList()
         {
 
