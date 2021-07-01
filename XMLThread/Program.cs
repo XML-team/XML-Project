@@ -5,16 +5,16 @@ using System.IO;
 using System.Xml.Serialization;
 
 namespace XMLThread
-{
+{   
     class Program
     {
         static void Main(string[] args)
         {
-            Student Reema = new Student("Reema","Imam Abdulrahman bin Faisal University", "Computer Science");
-            SerializeToXml(typeof(Student), Reema, @"C:\Users\Reema\Desktop\StudentInfo.xml");
+            Trainee Reema = new Trainee("Reema","Imam Abdulrahman bin Faisal University", "Computer Science");
+            XMLWrite(typeof(Trainee), Reema, @"C:\Users\Reema\Desktop\TraineeInfo.xml");
         }
 
-        static void SerializeToXml(Type type, object o, string path)
+        static void XMLWrite(Type type, object o, string path)
          {
             if (File.Exists(path)) File.Delete(path);
             XmlSerializer xmlSerializer = new XmlSerializer(type);
@@ -23,21 +23,22 @@ namespace XMLThread
             writer.Close();
          }
 
-        static object DeserializeFromXml(Type type, string path)
-            {
-            List<Student> students = null;
+        static async Task<List<Trainee>> XMLRead(Type type, string path)
+        {
+
+            List<Trainee> students = null;
 
             if (File.Exists(path))
             {
                 XmlSerializer xmlSerializer = new XmlSerializer(type);
                 TextReader reader = new StreamReader(path);
-                students = xmlSerializer.Deserialize(reader) as List<Student>;
+                students = xmlSerializer.Deserialize(reader) as List<Trainee>;
                 reader.Close();
             }
 
             return null;
         }
-        static async Task<List<Student>> GetStudentList()
+        static async Task<List<Trainee>> GetStudentList()
         {
 
             return null;
@@ -45,15 +46,15 @@ namespace XMLThread
         
     }
 
-    public class Student
+    public class Trainee
     {
 
-        public Student()
+        public Trainee()
         {
                 
         }
 
-        public Student(string name, string university, string major)
+        public Trainee(string name, string university, string major)
         {
             Name = name;
             University = university;
