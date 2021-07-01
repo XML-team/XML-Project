@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+
 using System.IO;
 using System.Xml.Serialization;
+
 
 namespace XMLThread
 {
@@ -13,6 +15,7 @@ namespace XMLThread
             Student Reema = new Student("Reema","Imam Abdulrahman bin Faisal University", "Computer Science");
             SerializeToXml(typeof(Student), Reema, @"C:\Users\Reema\Desktop\StudentInfo.xml");
         }
+
 
         static void SerializeToXml(Type type, object o, string path)
          {
@@ -25,6 +28,10 @@ namespace XMLThread
 
         static object DeserializeFromXml(Type type, string path)
             {
+
+        static async Task<List<Student>> XMLRead(Type type, string path)
+        {
+
             List<Student> students = null;
 
             if (File.Exists(path))
