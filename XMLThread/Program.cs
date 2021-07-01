@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-
-using System.IO;
 using System.Xml.Serialization;
+using System.IO;
+
 
 
 namespace XMLThread
@@ -16,6 +16,7 @@ namespace XMLThread
             XMLWrite(typeof(Trainee), Reema, @"C:\Users\Reema\Desktop\TraineeInfo.xml");
         }
 
+
         static void XMLWrite(Type type, object o, string path)
          {
             if (File.Exists(path)) File.Delete(path);
@@ -26,9 +27,8 @@ namespace XMLThread
          }
 
         static async Task<List<Trainee>> XMLRead(Type type, string path)
-        {
 
-            List<Trainee> students = null;
+        { 
 
             if (File.Exists(path))
             {
@@ -42,6 +42,7 @@ namespace XMLThread
         }
         static async Task<List<Trainee>> GetTraineeList()
         {
+
             List<Trainee> trainees = new List<Trainee>
             {
                 new Trainee{Name="Reema",University="Imam Abdulrahman bin Faisal University",Major="Computer Science"},
@@ -51,6 +52,7 @@ namespace XMLThread
                 new Trainee{Name="Abdullah",University="Florida STEM University", Major="Computer Science"}
             };
             return trainees;
+
         }
         
     }
