@@ -19,12 +19,12 @@ namespace XMLThread
         {
             Type typeOfTrainee = typeof(List<Trainee>);
 
-            await XmlUtils.XMLWriteAll(
-                typeOfTrainee, 
+            await TraineeXmlUtils.XMLWriteAll(
+                typeOfTrainee,
                 (new TraineeRepository()).GetAll(), 
                 path);
 
-            foreach (var trainee in await XmlUtils.XMLReadAll(typeOfTrainee, path)) 
+            foreach (var trainee in await TraineeXmlUtils.XMLReadAll(typeOfTrainee, path)) 
                 Console.WriteLine(trainee);
         }
     }
