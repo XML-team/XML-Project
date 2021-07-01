@@ -1,6 +1,6 @@
-# Project05-XML
+# XML Reader and Writer
 
-We worked together to make an XML Reader and Creator which can read an XML file and show its content in addition to create a new XML file.
+This project allows users to read and write to files in XML format. Clean code, efficiency and asynchronization has been considered while developing this application.
 
 ## Team Members:
 
