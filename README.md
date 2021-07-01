@@ -1,5 +1,7 @@
 # XML Reader and Writer
 
+[![BCH compliance](https://bettercodehub.com/edge/badge/Abdullah-ALHaif/Project05-XML?branch=main)](https://bettercodehub.com/)
+
 This project allows users to read and write to files in XML format. Clean code, efficiency and asynchronization has been considered while developing this application.
 
 ## Team Members:
@@ -11,7 +13,7 @@ This project allows users to read and write to files in XML format. Clean code, 
 * Abdullah AL Haif
 
 
-## Tools & Reqirements:
+## Tools & Requirements:
 - C#
 - Threading
 - Clean Code
