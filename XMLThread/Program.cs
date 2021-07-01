@@ -10,10 +10,12 @@ namespace XMLThread
 {   
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
-            Trainee Reema = new Trainee("Reema","Imam Abdulrahman bin Faisal University", "Computer Science");
-            XMLWrite(typeof(Trainee), Reema, @"C:\Users\Reema\Desktop\TraineeInfo.xml");
+            Trainee Reema = new Trainee("Reema", "Imam Abdulrahman bin Faisal University", "Computer Science");
+            XMLWrite(typeof (Trainee), Reema, @"/Users/hanans/Desktop/t/TraineeInfo.xml");
+             await XMLRead(typeof(List<Trainee>), @"/Users/hanans/Desktop/t/TraineeInfo.xml");
+            
         }
 
 
@@ -27,18 +29,23 @@ namespace XMLThread
          }
 
         static async Task<List<Trainee>> XMLRead(Type type, string path)
+        {
+            List<Trainee> students = null;
 
-        { 
 
             if (File.Exists(path))
             {
                 XmlSerializer xmlSerializer = new XmlSerializer(type);
                 TextReader reader = new StreamReader(path);
                 students = xmlSerializer.Deserialize(reader) as List<Trainee>;
+                foreach (var item in students)
+                {
+                    Console.WriteLine(item.Name);
+                }
                 reader.Close();
             }
 
-            return null;
+            return students;
         }
         static async Task<List<Trainee>> GetTraineeList()
         {
